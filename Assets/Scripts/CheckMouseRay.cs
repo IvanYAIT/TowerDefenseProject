@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class CheckMouseRay : MonoBehaviour
 {
     [SerializeField] private Camera PlayerCamera;
+    [SerializeField] private Text TextMoney;
     private bool isShown = false;
     private Transform transformLastContactObject;
     void Update()
@@ -35,11 +38,29 @@ public class CheckMouseRay : MonoBehaviour
                 }
                 else if(hitInfo.collider.gameObject.tag == "towerType")
                 {
+                    Tower tower = (Tower)hitInfo.transform.gameObject.GetComponent<Tower>();
+                    int money = int.Parse(TextMoney.text);
+                    if (tower.Cost <= money)
+                    {
+                        TextMoney.text = Convert.ToString(money - tower.Cost);
+                    }
+
                     for (int i = 0; i < transformLastContactObject.childCount; i++)
                     {
                         transformLastContactObject.GetChild(i).gameObject.SetActive(false);
                     }
-                    Instantiate(hitInfo.transform.gameObject, new Vector3(transformLastContactObject.transform.position.x + 0.6f, transformLastContactObject.transform.position.y + 0.7f, transformLastContactObject.transform.position.z), transform.rotation).SetActive(true);
+                    GameObject obj = Instantiate(hitInfo.transform.gameObject, new Vector3(transformLastContactObject.transform.position.x + 0.6f, transformLastContactObject.transform.position.y + 0.7f, transformLastContactObject.transform.position.z), transform.rotation);
+                    obj.SetActive(true);
+                    obj.tag.Remove(0);
+                    obj.tag = "ActiveTower";
+                }
+                else if (hitInfo.collider.gameObject.tag == "ActiveTower")
+                {
+                    Tower tower = (Tower)hitInfo.transform.gameObject.GetComponent<Tower>();
+                    if(int.Parse(TextMoney.text) >= tower.MoneyForLevelUp)
+                    {
+                        tower.LevelUp();
+                    }
                 }
             }
         }
