@@ -15,3 +15,4 @@ MonoBehaviour:
   hp: 70
   speed: 5
   isFlying: 0
+  damageToTower: 15

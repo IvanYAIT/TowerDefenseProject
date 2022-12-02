@@ -17,6 +17,8 @@ namespace State
             states.Add(typeof(WinState), new WinState(this, menu));
             states.Add(typeof(LoseState), new LoseState(this, menu));
             currentState = new GameState(this);
+            MainTower.OnTowerDestroy += ChangeState;
+            SceneLoader.OnSceneChange += ChangeState;
         }
 
         public void ChangeState(Type type)
@@ -24,6 +26,8 @@ namespace State
             currentState.Exit();
             states.TryGetValue(type, out currentState);
             currentState.Enter();
+            Debug.Log(type);
+            MainTower.OnTowerDestroy -= ChangeState;
         }
 
         public void Update()
