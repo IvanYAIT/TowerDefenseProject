@@ -12,7 +12,9 @@ public class CheckMouseRay : MonoBehaviour
     private Transform transformLastContactObject;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+
+
+        /*if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -53,6 +55,7 @@ public class CheckMouseRay : MonoBehaviour
                     obj.SetActive(true);
                     obj.tag.Remove(0);
                     obj.tag = "ActiveTower";
+                    tower.Using = true;
                 }
                 else if (hitInfo.collider.gameObject.tag == "ActiveTower")
                 {
@@ -63,6 +66,6 @@ public class CheckMouseRay : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
     }
 }

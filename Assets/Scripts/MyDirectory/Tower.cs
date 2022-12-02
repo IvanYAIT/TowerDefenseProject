@@ -17,7 +17,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private int[] LevelupPower;
     [SerializeField] private int[] LevelUpRadius;
     [SerializeField] private int[] NeededMoneyForLevelUp;
-    [SerializeField] private bool Using;
+    [SerializeField] public bool Using;
     [SerializeField] private GameObject Projectile;
     [SerializeField] private bool CabBeatFlingEnemies;
 
@@ -94,6 +94,20 @@ public class Tower : MonoBehaviour
                     nearestEnemyDistance = currentDistance;
                 }
             }
+        }
+        else
+        {
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                float currentDistance = Vector2.Distance(transform.position, enemy.transform.position);
+
+                if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
+                {
+                    nearestEnemy = enemy.transform;
+                    nearestEnemyDistance = currentDistance;
+                }
+            }
+
         }
         
 
