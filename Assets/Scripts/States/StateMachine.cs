@@ -18,6 +18,7 @@ namespace State
             states.Add(typeof(LoseState), new LoseState(this, menu));
             currentState = new GameState(this);
             MainTower.OnTowerDestroy += ChangeState;
+            SceneLoader.OnSceneChange += ChangeState;
         }
 
         public void ChangeState(Type type)
