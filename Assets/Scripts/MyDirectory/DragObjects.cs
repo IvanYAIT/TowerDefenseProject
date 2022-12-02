@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragObjects : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] GameObject TowerPrefab;
     [SerializeField] Transform parent;
+    [SerializeField] Text Text;
 
     private Vector3 startPosition;
 
@@ -34,8 +36,13 @@ public class DragObjects : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         {
             if(hit.transform.gameObject.tag == "towerPos")
             {
-                Instantiate(TowerPrefab, new Vector3(hit.transform.position.x-1.1f, hit.transform.position.y+1.5f, hit.transform.position.z-1.1f), new Quaternion(1,0,0,-45));
-                
+                Tower towerInfo = TowerPrefab.GetComponent<Tower>();
+                if (ResourceManager.Instance.money >= towerInfo.MoneyForLevelUp)
+                {
+                    Instantiate(TowerPrefab, new Vector3(hit.transform.position.x - 1.1f, hit.transform.position.y + 1.5f, hit.transform.position.z - 1.1f), new Quaternion(1, 0, 0, -45)).GetComponent<Tower>().SetTextMoney(Text);
+                    ResourceManager.Instance.money -= towerInfo.MoneyForLevelUp;
+                }
+
             }
             else
             {

@@ -5,7 +5,12 @@ using UnityEngine;
 public class Projcetiletower : MonoBehaviour
 {
     [SerializeField] private float speed = 7;
+
+    private int damage;
     private Transform target;
+
+    public void SetDamage(int damage) => this.damage = damage;
+
     void Update()
     {
         Move();
@@ -20,11 +25,14 @@ public class Projcetiletower : MonoBehaviour
     {
         if(target != null)
         {
-            if(Vector2.Distance(transform.position, target.position) < .1f)
+            if(Vector3.Distance(transform.position, target.position) < .1f)
+            {
                 Destroy(gameObject);
+                target.GetComponent<Enemy>().GetDamage(damage);
+            }
             else
             {
-                Vector2 dir = target.position - transform.position;
+                Vector3 dir = target.position - transform.position;
 
                 transform.Translate(dir.normalized * Time.deltaTime * speed);
             }

@@ -6,11 +6,18 @@ TagManager:
   tags:
   - Undefined
   - towerPos
+  - Enemy
+  - Bullet
+  - BulletFromFlyingEnemy
+  - Turn
+  - FlyingEnemy
+  - Upgrade
+  - RandomLeft
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

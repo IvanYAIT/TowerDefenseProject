@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IDamagable
 {
@@ -12,6 +13,9 @@ public class Enemy : MonoBehaviour, IDamagable
     private bool isFlying;
     private int damageToTower;
     private int currentHp;
+    private Slider progressBar;
+
+    public void SetProgressBar(Slider progressBar) => this.progressBar = progressBar;
 
     void Start()
     {
@@ -21,11 +25,21 @@ public class Enemy : MonoBehaviour, IDamagable
         currentHp = enemyData.Hp;
         directionLR = 1;
         directionUD = 0;
+        progressBar.value++;
     }
 
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void Update()
+    {
+        if (currentHp <= 0)
+        {
+            Destroy(gameObject);
+            ResourceManager.Instance.money += 100;
+        }
     }
 
     private void Move()
@@ -37,31 +51,11 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("RandomLeft") && !other.CompareTag("Enemy"))
+        if (other.CompareTag("Turn"))
             transform.eulerAngles = other.transform.rotation.eulerAngles;
-        else if (other.CompareTag("RandomLeft") && !other.CompareTag("Enemy"))
+        else if (other.CompareTag("RandomLeft"))
             if (Random.Range(1, 3) == 1)
                 transform.eulerAngles = other.transform.rotation.eulerAngles;
-
-
-
-
-
-
-
-
-
-
-        if (other.CompareTag("Bullet") && !isFlying)
-        {
-            Destroy(gameObject);
-            ResourceManager.Instance.money += 100;
-        }
-        if (other.CompareTag("BulletFromFlyingEnemy") && isFlying)
-        {
-            Destroy(gameObject);
-            ResourceManager.Instance.money += 100;
-        }
 
 
         if (other.CompareTag("Tower"))

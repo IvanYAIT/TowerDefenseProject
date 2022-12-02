@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Spawner : MonoBehaviour
+public class Spawner : Object
 {
-    [SerializeField] private Transform spawnpoin1;
-    [SerializeField] private Transform spawnpoin2;
-    [SerializeField] private GameObject NoramlEnemy;
-    [SerializeField] private GameObject HeavyEnemy;
-    [SerializeField] private GameObject SpeedEnemy;
+    private Transform spawnpoin1;
+    private Transform spawnpoin2;
+    private GameObject NoramlEnemy;
+    private GameObject HeavyEnemy;
+    private GameObject SpeedEnemy;
 
     private int rndNum;
     private int rndEnemyNum;
     private float timer;
     private List<GameObject> enemies;
+    private Slider progressBar;
 
-    void Start()
+    public Spawner(Transform spawnpoin1, Transform spawnpoin2, GameObject noramlEnemy, GameObject heavyEnemy, GameObject speedEnemy, Slider progressBar)
     {
+        this.spawnpoin1 = spawnpoin1;
+        this.spawnpoin2 = spawnpoin2;
+        this.progressBar = progressBar;
+        NoramlEnemy = noramlEnemy;
+        HeavyEnemy = heavyEnemy;
+        SpeedEnemy = speedEnemy;
         timer = 0;
         enemies = new List<GameObject>();
         enemies.Add(NoramlEnemy);
@@ -24,10 +32,9 @@ public class Spawner : MonoBehaviour
         enemies.Add(SpeedEnemy);
     }
 
-
-    void Update()
+    public void Spawn()
     {
-        if(timer >= 1)
+        if (timer >= 1)
         {
             rndNum = Random.Range(1, 3);
             rndEnemyNum = Random.Range(0, 3);
@@ -45,6 +52,5 @@ public class Spawner : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        
     }
 }

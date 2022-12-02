@@ -111,13 +111,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 100
-  Culldown: 5
-  Curcooldown: 5
+  Culldown: 1
+  Curcooldown: 1
   Power: 10
-  Radius: 5
+  Radius: 10
   MoneyForLevelUp: 100
-  ShownObject: {fileID: 0}
-  TextMoney: {fileID: 0}
+  ShownObject: {fileID: 2709128671525825233, guid: 2fb88b07ac2b5cf4387ef7024ab1a51b, type: 3}
   LevelUpCulldown: []
   LevelupPower: 
   LevelUpRadius: 
@@ -125,3 +124,4 @@ MonoBehaviour:
   Using: 1
   Projectile: {fileID: 6420653978220379580, guid: d5f5eeb7d66094d4f8deadeba330c373, type: 3}
   CabBeatFlingEnemies: 0
+  CabBeatGroundEnemies: 1

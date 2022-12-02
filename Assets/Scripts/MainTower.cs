@@ -10,11 +10,6 @@ public class MainTower : MonoBehaviour, IDamagable
 
     public static Action<Type> OnTowerDestroy;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (hp <= 0)

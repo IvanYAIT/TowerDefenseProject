@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SpeedEnemy
   m_EditorClassIdentifier: 
   hp: 30
-  speed: 13
+  speed: 4
   isFlying: 1
   damageToTower: 5

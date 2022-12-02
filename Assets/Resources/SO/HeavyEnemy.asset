@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HeavyEnemy
   m_EditorClassIdentifier: 
   hp: 70
-  speed: 5
+  speed: 1
   isFlying: 0
   damageToTower: 15

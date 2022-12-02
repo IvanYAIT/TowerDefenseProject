@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceManager
 {
-    public int money;
+    public int money = 100;
 
     private static ResourceManager instance;
     public static ResourceManager Instance

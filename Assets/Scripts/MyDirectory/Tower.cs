@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private int Radius = 0;
     [SerializeField] public int MoneyForLevelUp = 0;
     [SerializeField] private GameObject ShownObject;
-    [SerializeField] private Text TextMoney;
+    private Text TextMoney;
     private int counter = 0;
     [SerializeField] private float[] LevelUpCulldown;
     [SerializeField] private int[] LevelupPower;
@@ -20,6 +20,10 @@ public class Tower : MonoBehaviour
     [SerializeField] public bool Using;
     [SerializeField] private GameObject Projectile;
     [SerializeField] private bool CabBeatFlingEnemies;
+    [SerializeField] private bool typeThree;
+    private GameObject objUpgrade = null;
+
+    public void SetTextMoney(Text TextMoney) => this.TextMoney = TextMoney;
 
     public void ShowAbilityToLevelUp()
     {
@@ -37,26 +41,46 @@ public class Tower : MonoBehaviour
         Radius += LevelUpRadius[counter];
         Culldown -= LevelUpCulldown[counter];
         MoneyForLevelUp += NeededMoneyForLevelUp[counter];
+        ResourceManager.Instance.money -= MoneyForLevelUp;
         counter++;
     }
+
 
     private void Update()
     {
         if (Using)
         {
-            if (int.Parse(TextMoney.text) >= MoneyForLevelUp && counter <= LevelUpCulldown.Length - 1)
-            {
-                ShowAbilityToLevelUp();
-            }
-            else
-            {
-                StopShowAbilityToLevelUp();
-            }
+
 
             if(Curcooldown >= 0)
                    Curcooldown -= Time.deltaTime;
             if(CanShoot())
                 SearchTarget(CabBeatFlingEnemies);
+        }
+
+        
+        if(ResourceManager.Instance.money >= MoneyForLevelUp && objUpgrade == null && counter !=2)
+        {
+            objUpgrade = Instantiate(ShownObject, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
+        } else if (ResourceManager.Instance.money <= MoneyForLevelUp && objUpgrade == null)
+        {
+            Destroy(objUpgrade);
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Upgrade")
+                {
+                    Debug.Log(hit);
+                    LevelUp();
+                    Destroy(objUpgrade);
+                }
+            }
         }
     }
 
@@ -68,11 +92,27 @@ public class Tower : MonoBehaviour
         return false;
     }
 
+
     void SearchTarget(bool Can)
     {
         Transform nearestEnemy = null;
+        Transform nearestFlyingEnemy = null;
         float nearestEnemyDistance = Mathf.Infinity;
         if (Can)
+        {
+
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("FlyingEnemy"))
+            {
+                float currentDistance = Vector2.Distance(transform.position, enemy.transform.position);
+
+                if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
+                {
+                    nearestEnemy = enemy.transform;
+                    nearestEnemyDistance = currentDistance;
+                }
+            }
+        }
+        else if (typeThree)
         {
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
@@ -84,16 +124,18 @@ public class Tower : MonoBehaviour
                     nearestEnemyDistance = currentDistance;
                 }
             }
+            Shoot(nearestEnemy);
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("FlyingEnemy"))
             {
                 float currentDistance = Vector2.Distance(transform.position, enemy.transform.position);
 
                 if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
                 {
-                    nearestEnemy = enemy.transform;
+                    nearestFlyingEnemy = enemy.transform;
                     nearestEnemyDistance = currentDistance;
                 }
             }
+            Shoot(nearestFlyingEnemy);
         }
         else
         {
@@ -107,7 +149,6 @@ public class Tower : MonoBehaviour
                     nearestEnemyDistance = currentDistance;
                 }
             }
-
         }
         
 
@@ -119,12 +160,11 @@ public class Tower : MonoBehaviour
     {
         Curcooldown = Culldown;
 
-
         GameObject obj = Instantiate(Projectile);
+        Projcetiletower projcetiletower = obj.GetComponent<Projcetiletower>();
 
-        obj.transform.position = transform.position;
-        obj.GetComponent<Projcetiletower>().SetTarget(enemy);
+        projcetiletower.SetDamage(Power);
+        obj.transform.position = new Vector3(transform.position.x, transform.position.y+1, transform.position.z);
+        projcetiletower.SetTarget(enemy);
     }
-
-
 }
