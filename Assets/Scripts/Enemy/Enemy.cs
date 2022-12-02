@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamagable
 {
     [SerializeField] private EnemyData enemyData;
 
@@ -10,11 +10,15 @@ public class Enemy : MonoBehaviour
     private int directionLR;
     private int directionUD;
     private bool isFlying;
+    private int damageToTower;
+    private int currentHp;
 
     void Start()
     {
         speed = enemyData.Speed;
         isFlying = enemyData.IsFlying;
+        damageToTower = enemyData.DamageToTower;
+        currentHp = enemyData.Hp;
         directionLR = 1;
         directionUD = 0;
     }
@@ -31,15 +35,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Left"))
-            transform.rotation = new Quaternion(0, -90, 0, 90);
-        else if (other.CompareTag("Right"))
-            transform.rotation = new Quaternion(0, 90, 0, 90);
-        else if (other.CompareTag("Up"))
-            transform.rotation = new Quaternion(0, 0, 0, 0);
-        else if (other.CompareTag("Down"))
-            transform.rotation = new Quaternion(0, 180, 0, 0);
-        else if (other.CompareTag("RandomLeft"))
+        transform.Rotate(other.transform.right);
+
+        if (other.CompareTag("RandomLeft"))
             if (Random.Range(1, 3) == 1)
                 transform.rotation = new Quaternion(0, -90, 0, 90);
         else if (other.CompareTag("RandomRight"))
@@ -61,9 +59,15 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             ResourceManager.Instance.money += 100;
         }
-        if (other.CompareTag("Finish"))
+
+
+        if (other.CompareTag("Tower"))
         {
             Destroy(gameObject);
+            other.gameObject.GetComponent<MainTower>().GetDamage(damageToTower);
         }
     }
+
+    public void GetDamage(int damage)=>
+        currentHp -= damage;
 }
