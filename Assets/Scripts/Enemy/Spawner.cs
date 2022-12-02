@@ -38,13 +38,16 @@ public class Spawner : Object
         {
             rndNum = Random.Range(1, 3);
             rndEnemyNum = Random.Range(0, 3);
+            GameObject obj = null;
             if (rndNum == 1)
             {
-                Instantiate(enemies[rndEnemyNum], new Vector3(spawnpoin1.position.x, spawnpoin1.position.y, spawnpoin1.position.z), new Quaternion());
+                obj = Instantiate(enemies[rndEnemyNum], new Vector3(spawnpoin1.position.x, spawnpoin1.position.y, spawnpoin1.position.z), new Quaternion());
+                obj.GetComponent<Enemy>().SetProgressBar(progressBar);
             }
             else
             {
-                Instantiate(enemies[rndEnemyNum], new Vector3(spawnpoin2.position.x, spawnpoin2.position.y, spawnpoin2.position.z), new Quaternion());
+                obj = Instantiate(enemies[rndEnemyNum], new Vector3(spawnpoin2.position.x, spawnpoin2.position.y, spawnpoin2.position.z), new Quaternion());
+                obj.GetComponent<Enemy>().SetProgressBar(progressBar);
             }
             timer = 0;
         }
