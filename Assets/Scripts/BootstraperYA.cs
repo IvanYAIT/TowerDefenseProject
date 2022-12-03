@@ -8,12 +8,10 @@ public class BootstraperYA : MonoBehaviour
 {
     [SerializeField] private Menu menu;
     [SerializeField] private Text moneyText;
-    [SerializeField] private Transform spawnpoin1;
-    [SerializeField] private Transform spawnpoin2;
-    [SerializeField] private GameObject NoramlEnemy;
-    [SerializeField] private GameObject HeavyEnemy;
-    [SerializeField] private GameObject SpeedEnemy;
+    [SerializeField] private List<Transform> spawnpoints;
+    [SerializeField] private List<GameObject> enemies;
     [SerializeField] private Slider ProgressBar;
+    [SerializeField] private bool isLvl0;
 
     private StateMachine stateMachine;
     private MoneyView moneyView;
@@ -21,9 +19,9 @@ public class BootstraperYA : MonoBehaviour
 
     void Start()
     {
-        stateMachine = new StateMachine(menu);
+        stateMachine = new StateMachine(menu, isLvl0);
         moneyView = new MoneyView(moneyText);
-        spawner = new Spawner(spawnpoin1, spawnpoin2, NoramlEnemy, HeavyEnemy, SpeedEnemy, ProgressBar);
+        spawner = new Spawner(spawnpoints, enemies, ProgressBar, isLvl0);
     }
 
     void Update()

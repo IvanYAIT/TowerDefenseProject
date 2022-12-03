@@ -50,8 +50,6 @@ public class Tower : MonoBehaviour
     {
         if (Using)
         {
-
-
             if(Curcooldown >= 0)
                    Curcooldown -= Time.deltaTime;
             if(CanShoot())

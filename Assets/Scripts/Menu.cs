@@ -7,8 +7,10 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
+    [SerializeField] GameObject trainingMenu;
 
     public GameObject PauseMenu => pauseMenu;
     public GameObject WinMenu => winMenu;
     public GameObject LoseMenu => loseMenu;
+    public GameObject TrainingMenu => trainingMenu;
 }
