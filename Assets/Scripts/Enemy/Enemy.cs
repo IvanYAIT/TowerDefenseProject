@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour, IDamagable
         currentHp = enemyData.Hp;
         directionLR = 1;
         directionUD = 0;
-        progressBar.value++;
     }
 
     private void FixedUpdate()
@@ -37,7 +36,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         if (currentHp <= 0)
         {
-            Destroy(gameObject);
+            Death();
             ResourceManager.Instance.money += 100;
         }
     }
@@ -60,11 +59,17 @@ public class Enemy : MonoBehaviour, IDamagable
 
         if (other.CompareTag("Tower"))
         {
-            Destroy(gameObject);
+            Death();
             other.gameObject.GetComponent<MainTower>().GetDamage(damageToTower);
         }
     }
 
     public void GetDamage(int damage)=>
         currentHp -= damage;
+
+    public void Death()
+    {
+        Destroy(gameObject);
+        progressBar.value++;
+    }
 }

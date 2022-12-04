@@ -24,5 +24,11 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         OnSceneChange?.Invoke(typeof(GameState));
     }
-        
+
+    public void Continue()=>
+        OnSceneChange?.Invoke(typeof(GameState));
+
+    public void MainMenu() =>
+        SceneManager.LoadScene(0);
+
 }
