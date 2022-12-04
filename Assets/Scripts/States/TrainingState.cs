@@ -21,7 +21,7 @@ namespace State
         public override void Exit()
         {
             Time.timeScale = 1;
-            trainingMenu.SetActive(true);
+            trainingMenu.SetActive(false);
         }
 
         public override void Update()
