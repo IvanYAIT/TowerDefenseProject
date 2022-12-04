@@ -1,12 +1,12 @@
 using State;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainTower : MonoBehaviour, IDamagable
 {
     [SerializeField] private int hp;
+
+    public int HP => hp;
 
     public static Action<Type> OnTowerDestroy;
 

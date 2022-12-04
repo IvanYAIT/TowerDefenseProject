@@ -22,7 +22,8 @@ namespace State
             if (isLvl0)
                 ChangeState(typeof(TrainingState));
 
-            MainTower.OnTowerDestroy += ChangeState;
+            Training.OnPlayBtnPress += ChangeState;
+            MainTower.OnTowerDestroy += ChangeToLoseState;
             SceneLoader.OnSceneChange += ChangeState;
         }
 
@@ -31,8 +32,14 @@ namespace State
             currentState.Exit();
             states.TryGetValue(type, out currentState);
             currentState.Enter();
-            Debug.Log(type);
-            MainTower.OnTowerDestroy -= ChangeState;
+        }
+
+        public void ChangeToLoseState(Type type)
+        {
+            currentState.Exit();
+            states.TryGetValue(type, out currentState);
+            currentState.Enter();
+            MainTower.OnTowerDestroy -= ChangeToLoseState;
         }
 
         public void Update()

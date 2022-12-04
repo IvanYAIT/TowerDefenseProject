@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class MoneyView
 {
-    private Text moneyText;
+    private TextMeshProUGUI moneyText;
 
-    public MoneyView(Text moneyText)
+    public MoneyView(TextMeshProUGUI moneyText)
     {
         this.moneyText = moneyText;
     }
