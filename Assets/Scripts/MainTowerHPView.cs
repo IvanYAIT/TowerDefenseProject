@@ -11,6 +11,10 @@ public class MainTowerHPView
 
     public void View(int hp)
     {
-        hpText.text = hp.ToString();
+        if(hp > 0)
+            hpText.text = hp.ToString();
+        else
+            hpText.text = "0";
+
     }
 }

@@ -1,3 +1,4 @@
+using Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace State
             Training.OnPlayBtnPress += ChangeState;
             MainTower.OnTowerDestroy += ChangeToLoseState;
             SceneLoader.OnSceneChange += ChangeState;
+            Game.OnWin += ChangeState;
         }
 
         public void ChangeState(Type type)
