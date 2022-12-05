@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,15 +11,15 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject ShownObject;
     private Text TextMoney;
     private int counter = 0;
-    [SerializeField] private float[] LevelUpCulldown;
-    [SerializeField] private int[] LevelupPower;
-    [SerializeField] private int[] LevelUpRadius;
-    [SerializeField] private int[] NeededMoneyForLevelUp;
+    [SerializeField] private int CountOfUpgrades = 2;
+    [SerializeField] private GameObject[] TowerPrefabs;
     [SerializeField] public bool Using;
+    [SerializeField] int lvlofTower = 0;
     [SerializeField] private GameObject Projectile;
     [SerializeField] private bool CabBeatFlingEnemies;
     [SerializeField] private bool typeThree;
     private GameObject objUpgrade = null;
+    private int IndexOfCheckPrefab;
 
     public void SetTextMoney(Text TextMoney) => this.TextMoney = TextMoney;
 
@@ -37,12 +35,21 @@ public class Tower : MonoBehaviour
 
     public void LevelUp()
     {
-        Power += LevelupPower[counter];
-        Radius += LevelUpRadius[counter];
-        Culldown -= LevelUpCulldown[counter];
-        MoneyForLevelUp += NeededMoneyForLevelUp[counter];
-        ResourceManager.Instance.money -= MoneyForLevelUp;
-        counter++;
+        SetNewTower();
+    }
+
+    private void SetNewTower()
+    {
+        if (lvlofTower <= CountOfUpgrades)
+        {
+
+        }
+        else
+        {
+            GameObject obj = Instantiate(TowerPrefabs[lvlofTower], transform.position, transform.rotation);
+            obj.GetComponent<Tower>().lvlofTower = this.lvlofTower + 1;
+            Destroy(this.gameObject);
+        }
     }
 
 
@@ -50,29 +57,33 @@ public class Tower : MonoBehaviour
     {
         if (Using)
         {
-            if(Curcooldown >= 0)
-                   Curcooldown -= Time.deltaTime;
-            if(CanShoot())
+            if (Curcooldown >= 0)
+                Curcooldown -= Time.deltaTime;
+            if (CanShoot())
                 SearchTarget(CabBeatFlingEnemies);
         }
 
-        
-        if(ResourceManager.Instance.money >= MoneyForLevelUp && objUpgrade == null && counter !=2)
+
+        if (ResourceManager.Instance.money >= MoneyForLevelUp && objUpgrade == null && lvlofTower <= CountOfUpgrades)
         {
             objUpgrade = Instantiate(ShownObject, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
-        } else if (ResourceManager.Instance.money <= MoneyForLevelUp && objUpgrade == null)
+            objUpgrade.GetComponent<scheking>().index = IndexManager.SetIndex();
+            IndexOfCheckPrefab = objUpgrade.GetComponent<scheking>().index;
+
+        }
+        else if ((ResourceManager.Instance.money <= MoneyForLevelUp && objUpgrade == null) || lvlofTower <= CountOfUpgrades)
         {
             Destroy(objUpgrade);
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.tag == "Upgrade")
+                if (hit.transform.gameObject.tag == "Upgrade" && hit.transform.GetComponent<scheking>().index == IndexOfCheckPrefab)
                 {
                     Debug.Log(hit);
                     LevelUp();
@@ -148,7 +159,7 @@ public class Tower : MonoBehaviour
                 }
             }
         }
-        
+
 
         if (nearestEnemy != null)
             Shoot(nearestEnemy);
@@ -162,7 +173,7 @@ public class Tower : MonoBehaviour
         Projcetiletower projcetiletower = obj.GetComponent<Projcetiletower>();
 
         projcetiletower.SetDamage(Power);
-        obj.transform.position = new Vector3(transform.position.x, transform.position.y+1, transform.position.z);
+        obj.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         projcetiletower.SetTarget(enemy);
     }
 }

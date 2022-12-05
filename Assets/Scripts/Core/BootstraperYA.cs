@@ -16,6 +16,8 @@ namespace Core
         [SerializeField] private Slider ProgressBar;
         [SerializeField] private bool isLvl0;
         [SerializeField] private MainTower mainTower;
+        [SerializeField] private Training training;
+        [SerializeField] private float waveDelay;
 
         private StateMachine stateMachine;
         private MoneyView moneyView;
@@ -29,16 +31,31 @@ namespace Core
             game = new Game();
             moneyView = new MoneyView(moneyText);
             mainTowerHPView = new MainTowerHPView(mainTowerHpText);
-            spawner = new Spawner(spawnpoints, waveDatas, ProgressBar, isLvl0);
+            spawner = new Spawner(spawnpoints, waveDatas, ProgressBar, isLvl0, waveDelay);
         }
 
         void Update()
         {
-            stateMachine.Update();
-            game.CheckWin(ProgressBar.value, ProgressBar.maxValue);
-            moneyView.View();
-            spawner.Spawn();
-            mainTowerHPView.View(mainTower.HP);
+            if (isLvl0)
+            {
+                if (training.IsTrainingEnd)
+                {
+                    stateMachine.Update();
+                    game.CheckWin(ProgressBar.value, ProgressBar.maxValue);
+                    moneyView.View();
+                    spawner.Spawn();
+                    mainTowerHPView.View(mainTower.HP);
+                }
+            }
+            else
+            {
+                stateMachine.Update();
+                game.CheckWin(ProgressBar.value, ProgressBar.maxValue);
+                moneyView.View();
+                spawner.Spawn();
+                mainTowerHPView.View(mainTower.HP);
+            }
+
         }
     }
 }

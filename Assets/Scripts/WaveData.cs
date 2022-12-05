@@ -4,11 +4,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WaveData", menuName = "SO/NewWaveData")]
 public class WaveData : ScriptableObject
 {
-    [SerializeField] private int timeBetweenSpawnEnemy;
+    [SerializeField] private float timeBetweenSpawnEnemy;
     [SerializeField] private List<GameObject> whatEnemies;
-    [SerializeField] private int enemyCount;
+    [SerializeField] private int normalEnemyCount;
+    [SerializeField] private int heavyEnemyCount;
+    [SerializeField] private int flyingEnemyCount;
 
-    public int TimeBetweenSpawnEnemy => timeBetweenSpawnEnemy;
-    public int EnemyCount => enemyCount;
+    public float TimeBetweenSpawnEnemy => timeBetweenSpawnEnemy;
+    public int NormalEnemyCount => normalEnemyCount;
+    public int HeavyEnemyCount => heavyEnemyCount;
+    public int FlyingEnemyCount => flyingEnemyCount;
     public List<GameObject> WhatEnemies => whatEnemies;
 }

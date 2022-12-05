@@ -16,6 +16,8 @@ public class Training : MonoBehaviour
 
     private int pages;
 
+    public bool IsTrainingEnd { get; private set; } = false;
+
     void Start()
     {
         pages = 0;
@@ -64,6 +66,9 @@ public class Training : MonoBehaviour
         }
     }
 
-    public void Play() =>
+    public void Play()
+    {
         OnPlayBtnPress?.Invoke(typeof(GameState));
+        IsTrainingEnd = true;
+    }
 }
