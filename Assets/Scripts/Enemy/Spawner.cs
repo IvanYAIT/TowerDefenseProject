@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,49 +5,91 @@ using UnityEngine.UI;
 public class Spawner : Object
 {
     private List<Transform> spawnpoints;
-    private int rndNum;
     private int rndEnemyNum;
-    private float timer;
+    private float timer = 0;
     private List<GameObject> enemies;
     private Slider progressBar;
     private bool isLvl0;
-    private int enemyCounter;
+    private int enemyGeneralCounter = 0;
+    private int enemyLocalCounter = 0;
+    private List<WaveData> waveDatas;
+    private WaveData currentWave;
+    private int waveCounter = 0;
+    private int spawnpointCounter = 0;
 
-    public Spawner(List<Transform> spawnpoints, List<GameObject> enemies, Slider progressBar, bool isLvl0)
+    public Spawner(List<Transform> spawnpoints, List<WaveData> waveDatas, Slider progressBar, bool isLvl0)
     {
         this.spawnpoints = spawnpoints;
         this.progressBar = progressBar;
-        this.enemies = enemies;
+        this.waveDatas = waveDatas;
+        enemies = waveDatas[0].WhatEnemies;
         this.isLvl0 = isLvl0;
-        enemyCounter = 0;
-        timer = 0;
+        currentWave = waveDatas[0];
+        spawnpoints[spawnpointCounter].GetChild(0).gameObject.SetActive(true);
     }
 
     public void Spawn()
     {
-        if(enemyCounter != progressBar.maxValue)
+        if (enemyGeneralCounter != progressBar.maxValue)
         {
-            if (timer >= 1)
+            if (enemyLocalCounter < currentWave.EnemyCount)
             {
-                rndNum = Random.Range(0, spawnpoints.Count);
-
-                if (spawnpoints[rndNum].childCount != 0)
+                if (timer >= currentWave.TimeBetweenSpawnEnemy)
                 {
-                    spawnpoints[rndNum].GetChild(0).gameObject.SetActive(true);
+                    if (spawnpoints[spawnpointCounter].childCount == 0)
+                    {
+                        rndEnemyNum = Random.Range(0, enemies.Count);
+                        EnemyType currentEnemyType = enemies[rndEnemyNum].GetComponent<Enemy>().EnemyType;
+
+                        if(currentEnemyType.Equals(EnemyType.Normal))
+                        {
+                            GameObject obj = Instantiate(enemies[rndEnemyNum], spawnpoints[0].position, new Quaternion());
+                            obj.GetComponent<Enemy>().SetProgressBar(progressBar);
+                        } else if(currentEnemyType.Equals(EnemyType.Flying))
+                        {
+                            GameObject obj = Instantiate(enemies[rndEnemyNum], spawnpoints[1].position, new Quaternion());
+                            obj.GetComponent<Enemy>().SetProgressBar(progressBar);
+                        } else if(currentEnemyType.Equals(EnemyType.Heavy))
+                        {
+                            GameObject obj = Instantiate(enemies[rndEnemyNum], spawnpoints[2].position, new Quaternion());
+                            obj.GetComponent<Enemy>().SetProgressBar(progressBar);
+                        }
+
+                        enemyGeneralCounter++;
+                        enemyLocalCounter++;
+                    }
+                    timer = 0;
                 }
                 else
                 {
-                    rndEnemyNum = Random.Range(0, 3);
-
-                    GameObject obj = Instantiate(enemies[rndEnemyNum], spawnpoints[rndNum].position, new Quaternion());
-                    obj.GetComponent<Enemy>().SetProgressBar(progressBar);
-                    enemyCounter++;
+                    timer += Time.deltaTime;
                 }
-                timer = 0;
             }
             else
             {
-                timer += Time.deltaTime;
+                enemyLocalCounter = 0;
+                waveCounter++;
+                spawnpointCounter++;
+                if (spawnpoints.Count > spawnpointCounter)
+                {
+                    if (spawnpoints[spawnpointCounter].childCount != 0)
+                    {
+                        for (int i = 0; i < enemies.Count; i++)
+                        {
+                            EnemyType currentEnemyType = enemies[i].GetComponent<Enemy>().EnemyType;
+                            if (currentEnemyType.Equals(EnemyType.Flying))
+                            {
+                                spawnpoints[1].GetChild(0).gameObject.SetActive(true);
+                            }
+                            else if (currentEnemyType.Equals(EnemyType.Heavy))
+                            {
+                                spawnpoints[2].GetChild(0).gameObject.SetActive(true);
+                            }
+                        }
+                    }
+                }
+                currentWave = waveDatas[waveCounter];
+                enemies = waveDatas[waveCounter].WhatEnemies;
             }
         }
     }

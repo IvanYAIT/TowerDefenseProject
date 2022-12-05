@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f276cc0d989714d9cf973d1c9ee7e9, type: 3}
   m_Name: NormalEnemy
   m_EditorClassIdentifier: 
-  hp: 45
+  hp: 60
   speed: 3
   isFlying: 0
-  damageToTower: 10
+  damageToTower: 1
+  moneyPerDeath: 10

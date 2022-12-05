@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65f276cc0d989714d9cf973d1c9ee7e9, type: 3}
-  m_Name: HeavyEnemy
+  m_Name: SpeedEnemy
   m_EditorClassIdentifier: 
-  hp: 70
-  speed: 1
-  isFlying: 0
-  damageToTower: 15
+  hp: 20
+  speed: 4
+  isFlying: 1
+  damageToTower: 1
+  moneyPerDeath: 5

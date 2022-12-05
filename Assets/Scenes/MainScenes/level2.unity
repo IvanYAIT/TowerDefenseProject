@@ -155,6 +155,7 @@ Transform:
   - {fileID: 14226848}
   - {fileID: 617042538}
   - {fileID: 1004591213}
+  - {fileID: 556887860}
   - {fileID: 1316732000}
   - {fileID: 1545213821}
   - {fileID: 1687796954}
@@ -169,7 +170,6 @@ Transform:
   - {fileID: 1211720903}
   - {fileID: 647857371}
   - {fileID: 1362641169}
-  - {fileID: 556887860}
   - {fileID: 1212926158}
   - {fileID: 77866601}
   - {fileID: 484588455}
@@ -2259,7 +2259,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &185244705
 BoxCollider:
@@ -3197,7 +3197,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &300630254
 BoxCollider:
@@ -5751,7 +5751,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &405368525
 BoxCollider:
@@ -10588,7 +10588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 556887860}
   m_Layer: 0
-  m_Name: Spawnpoint1 (1)
+  m_Name: NormalEnemy
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -10608,7 +10608,7 @@ Transform:
   m_Children:
   - {fileID: 810402468}
   m_Father: {fileID: 1706826}
-  m_RootOrder: 18
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &559747867
 Mesh:
@@ -11789,7 +11789,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh170632
+  m_Name: pb_Mesh81478
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11957,7 +11957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617042538}
   m_Layer: 0
-  m_Name: Spawnpoint1
+  m_Name: FlyingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -12377,7 +12377,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &647857372
 BoxCollider:
@@ -13769,7 +13769,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &792622580
 BoxCollider:
@@ -16418,7 +16418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a839147c52f100409db75553fcc0312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 20
 --- !u!1 &960263111
 GameObject:
   m_ObjectHideFlags: 0
@@ -16951,7 +16951,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1004591213}
   m_Layer: 0
-  m_Name: Spawnpoint3
+  m_Name: HeavyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -18160,7 +18160,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &1098609394
 BoxCollider:
@@ -18613,7 +18613,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &1122443599
 BoxCollider:
@@ -20813,7 +20813,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &1211720904
 BoxCollider:
@@ -23293,7 +23293,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1314835628
 BoxCollider:
@@ -23338,7 +23338,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1316732001
 BoxCollider:
@@ -23518,7 +23518,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &1362641170
 BoxCollider:
@@ -23735,7 +23735,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1420352357
 BoxCollider:
@@ -26358,7 +26358,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &1545213822
 BoxCollider:
@@ -27173,7 +27173,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1706826}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1687796955
 BoxCollider:
@@ -31556,13 +31556,10 @@ MonoBehaviour:
   moneyText: {fileID: 1097402651}
   mainTowerHpText: {fileID: 1809023736}
   spawnpoints:
-  - {fileID: 617042538}
-  - {fileID: 1004591213}
   - {fileID: 556887860}
-  enemies:
-  - {fileID: 4108050871300838103, guid: 5e85fe4809f940542b1e3622f3e17c35, type: 3}
-  - {fileID: 3675287555131018889, guid: a2b5b0923c673214d83b95d209287770, type: 3}
-  - {fileID: 1537230036243868430, guid: 32f7e55d615202e4ba81e0aea86eb6ea, type: 3}
+  - {fileID: 1004591213}
+  - {fileID: 617042538}
+  waveDatas: []
   ProgressBar: {fileID: 2059771989}
   isLvl0: 0
   mainTower: {fileID: 951850584}
@@ -34295,7 +34292,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh170390
+  m_Name: pb_Mesh51262
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

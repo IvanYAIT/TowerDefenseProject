@@ -7,7 +7,7 @@ public class SpawnWaiter : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= 10)
+        if(timer >= 5)
             Destroy(gameObject);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
@@ -8,9 +6,11 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject trainingMenu;
+    [SerializeField] GameObject musicPlayer;
 
     public GameObject PauseMenu => pauseMenu;
     public GameObject WinMenu => winMenu;
     public GameObject LoseMenu => loseMenu;
     public GameObject TrainingMenu => trainingMenu;
+    public GameObject MusicPlayer => musicPlayer;
 }

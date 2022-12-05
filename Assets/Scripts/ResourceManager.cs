@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ResourceManager
 {
-    public int money = 100;
+    public int money = 400;
 
     private static ResourceManager instance;
     public static ResourceManager Instance

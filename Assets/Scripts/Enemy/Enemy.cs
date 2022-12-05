@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +12,10 @@ public class Enemy : MonoBehaviour, IDamagable
     private int damageToTower;
     private int currentHp;
     private Slider progressBar;
+    private EnemyType enemyType;
 
     public void SetProgressBar(Slider progressBar) => this.progressBar = progressBar;
+    public EnemyType EnemyType => enemyType;
 
     void Start()
     {
@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IDamagable
         isFlying = enemyData.IsFlying;
         damageToTower = enemyData.DamageToTower;
         currentHp = enemyData.Hp;
+        enemyType = enemyData.EnemyType;
         directionLR = 1;
         directionUD = 0;
     }
@@ -37,7 +38,7 @@ public class Enemy : MonoBehaviour, IDamagable
         if (currentHp <= 0)
         {
             Death();
-            ResourceManager.Instance.money += 100;
+            ResourceManager.Instance.money += enemyData.MoneyPerDeath;
         }
     }
 

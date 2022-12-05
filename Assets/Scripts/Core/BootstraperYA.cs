@@ -12,7 +12,7 @@ namespace Core
         [SerializeField] private TextMeshProUGUI moneyText;
         [SerializeField] private TextMeshProUGUI mainTowerHpText;
         [SerializeField] private List<Transform> spawnpoints;
-        [SerializeField] private List<GameObject> enemies;
+        [SerializeField] private List<WaveData> waveDatas;
         [SerializeField] private Slider ProgressBar;
         [SerializeField] private bool isLvl0;
         [SerializeField] private MainTower mainTower;
@@ -29,7 +29,7 @@ namespace Core
             game = new Game();
             moneyView = new MoneyView(moneyText);
             mainTowerHPView = new MainTowerHPView(mainTowerHpText);
-            spawner = new Spawner(spawnpoints, enemies, ProgressBar, isLvl0);
+            spawner = new Spawner(spawnpoints, waveDatas, ProgressBar, isLvl0);
         }
 
         void Update()
