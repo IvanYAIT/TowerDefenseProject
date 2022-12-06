@@ -40,7 +40,7 @@ public class Tower : MonoBehaviour
 
     private void SetNewTower()
     {
-        if (lvlofTower <= CountOfUpgrades)
+        if (lvlofTower > CountOfUpgrades)
         {
 
         }
@@ -71,7 +71,7 @@ public class Tower : MonoBehaviour
             IndexOfCheckPrefab = objUpgrade.GetComponent<scheking>().index;
 
         }
-        else if ((ResourceManager.Instance.money <= MoneyForLevelUp && objUpgrade == null) || lvlofTower <= CountOfUpgrades)
+        else if ((ResourceManager.Instance.money <= MoneyForLevelUp && objUpgrade == null) || lvlofTower >= CountOfUpgrades)
         {
             Destroy(objUpgrade);
         }

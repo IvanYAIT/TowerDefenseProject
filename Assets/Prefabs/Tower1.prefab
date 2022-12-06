@@ -117,13 +117,11 @@ MonoBehaviour:
   Radius: 10
   MoneyForLevelUp: 200
   ShownObject: {fileID: 2709128671525825233, guid: 2fb88b07ac2b5cf4387ef7024ab1a51b, type: 3}
-  LevelUpCulldown:
-  - 0.5
-  - 0.5
-  LevelupPower: 1400000014000000
-  LevelUpRadius: 0000000000000000
-  NeededMoneyForLevelUp: 3200000000000000
+  CountOfUpgrades: 1
+  TowerPrefabs:
+  - {fileID: 470160999005504523, guid: ffb65e984ae2c354a87613f65f1201f5, type: 3}
   Using: 1
+  lvlofTower: 0
   Projectile: {fileID: 6420653978220379580, guid: d5f5eeb7d66094d4f8deadeba330c373, type: 3}
   CabBeatFlingEnemies: 0
   typeThree: 0

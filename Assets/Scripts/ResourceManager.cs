@@ -1,6 +1,6 @@
 public class ResourceManager
 {
-    public int money = 400;
+    public int money;
 
     private static ResourceManager instance;
     public static ResourceManager Instance

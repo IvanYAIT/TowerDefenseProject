@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Spawner : Object
 {
@@ -21,16 +22,23 @@ public class Spawner : Object
     private float waveDelay;
     private float waveDelayTimer = 0;
     private bool first = true;
+    private TextMeshProUGUI waveText;
 
-    public Spawner(List<Transform> spawnpoints, List<WaveData> waveDatas, Slider progressBar, bool isLvl0, float waveDelay)
+    public Spawner(List<Transform> spawnpoints, List<WaveData> waveDatas, Slider progressBar, List<GameObject> enemies, bool isLvl0, float waveDelay, TextMeshProUGUI waveText)
     {
         this.spawnpoints = spawnpoints;
         this.progressBar = progressBar;
         this.waveDatas = waveDatas;
         this.waveDelay = waveDelay;
-        enemies = waveDatas[0].WhatEnemies;
+        this.enemies = enemies;
         this.isLvl0 = isLvl0;
+        this.waveText = waveText;
+        waveText.text = (waveCounter+1).ToString();
         currentWave = waveDatas[0];
+        foreach (WaveData data in waveDatas)
+        {
+            progressBar.maxValue += data.NormalEnemyCount + data.HeavyEnemyCount + data.FlyingEnemyCount;
+        }
     }
 
     private void SpawnNormalEnemy()
@@ -107,6 +115,7 @@ public class Spawner : Object
                     waveCounter++;
                     if (waveCounter < waveDatas.Count)
                     {
+                        waveText.text = (waveCounter + 1).ToString();
                         enemyLocalCounter = 0;
                         normalEnemyCounter = 0;
                         heavyEnemyCounter = 0;
@@ -117,7 +126,6 @@ public class Spawner : Object
                             spawnpoints[spawnpointCounter].GetChild(0).gameObject.SetActive(true);
                         }
                         currentWave = waveDatas[waveCounter];
-                        enemies = waveDatas[waveCounter].WhatEnemies;
                     }
                 }
             }

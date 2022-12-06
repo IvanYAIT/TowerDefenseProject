@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007d4ac453f948540a34e30995889b6f, type: 3}
   m_Name: 2Wave
   m_EditorClassIdentifier: 
-  timeBetweenSpawnEnemy: 2.5
+  timeBetweenSpawnEnemy: 2
   whatEnemies:
   - {fileID: 4108050871300838103, guid: 5e85fe4809f940542b1e3622f3e17c35, type: 3}
   - {fileID: 1537230036243868430, guid: 32f7e55d615202e4ba81e0aea86eb6ea, type: 3}
-  normalEnemyCount: 10
-  heavyEnemyCount: 2
+  normalEnemyCount: 9
+  heavyEnemyCount: 5
   flyingEnemyCount: 0

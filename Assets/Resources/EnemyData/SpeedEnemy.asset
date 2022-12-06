@@ -16,5 +16,5 @@ MonoBehaviour:
   speed: 4
   isFlying: 1
   damageToTower: 1
-  moneyPerDeath: 5
+  moneyPerDeath: 20
   enemyType: 1

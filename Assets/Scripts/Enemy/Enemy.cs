@@ -10,9 +10,9 @@ public class Enemy : MonoBehaviour, IDamagable
     private int directionUD;
     private bool isFlying;
     private int damageToTower;
-    private int currentHp;
     private Slider progressBar;
 
+    public int CurrentHP { get; private set; }
     public void SetProgressBar(Slider progressBar) => this.progressBar = progressBar;
 
     void Start()
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IDamagable
         speed = enemyData.Speed;
         isFlying = enemyData.IsFlying;
         damageToTower = enemyData.DamageToTower;
-        currentHp = enemyData.Hp;
+        CurrentHP = enemyData.Hp;
         directionLR = 1;
         directionUD = 0;
     }
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        if (currentHp <= 0)
+        if (CurrentHP <= 0)
         {
             Death();
             ResourceManager.Instance.money += enemyData.MoneyPerDeath;
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour, IDamagable
     }
 
     public void GetDamage(int damage)=>
-        currentHp -= damage;
+        CurrentHP -= damage;
 
     public void Death()
     {
