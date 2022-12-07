@@ -13,8 +13,7 @@ namespace Core
         {
             if (progressBarValue == progressBarMaxValue)
                 OnWin?.Invoke(typeof(WinState));
-        }
-            
+        }   
     }
 }
 

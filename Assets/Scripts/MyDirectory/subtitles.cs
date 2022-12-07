@@ -13,7 +13,7 @@ public class subtitles : MonoBehaviour
     void Start()
     {
         
-        y = recttransform.position.y;
+        y = transform.position.y;
         StartCoroutine("ShowSubs");
     }
 
@@ -21,13 +21,13 @@ public class subtitles : MonoBehaviour
     {
         for(float i = y; i <= StopMoment; i+= speed)
         {
-            Vector3 a = recttransform.position;
+            Vector3 a = transform.position;
             
             a.y = i;
 
             Debug.Log(i);
 
-            recttransform.position = a;
+            transform.position = a;
 
             yield return new WaitForSeconds(0.02f);
         }

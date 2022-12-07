@@ -39,6 +39,7 @@ public class Spawner : Object
         {
             progressBar.maxValue += data.NormalEnemyCount + data.HeavyEnemyCount + data.FlyingEnemyCount;
         }
+        progressBar.maxValue -= 1;
     }
 
     private void SpawnNormalEnemy()

@@ -31,4 +31,6 @@ public class SceneLoader : MonoBehaviour
     public void MainMenu() =>
         SceneManager.LoadScene(0);
 
+    public void Quit() =>
+        Application.OpenURL("https://itch.io");
 }
