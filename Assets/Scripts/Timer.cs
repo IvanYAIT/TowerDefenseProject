@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class Timer : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Timer : MonoBehaviour
     private int min;
     private bool isEnd = false;
     private bool isCoroutineStart = false;
+
+    public static Action onTimerEnd;
 
     public void StartTimer()
     {
@@ -69,6 +72,8 @@ public class Timer : MonoBehaviour
             color.a += 0.01f;
             music.volume -= volume;
             levelEnd.GetComponent<Image>().color = color;
+            if (color.a == 1)
+                onTimerEnd?.Invoke();
             yield return new WaitForSeconds(0.1f);
         }
     }

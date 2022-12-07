@@ -5,15 +5,18 @@ namespace State
     class LoseState : AState
     {
         private GameObject loseMenu;
+        private AudioSource music;
 
         public LoseState(StateMachine owner, Menu menu) : base(owner)
         {
             loseMenu = menu.LoseMenu;
+            music = menu.MusicPlayer.GetComponent<AudioSource>();
         }
 
         public override void Enter()
         {
             loseMenu.SetActive(true);
+            music.Stop();
             Time.timeScale = 0;
         }
 

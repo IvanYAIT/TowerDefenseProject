@@ -16,3 +16,4 @@ MonoBehaviour:
   normalEnemyCount: 0
   heavyEnemyCount: 0
   flyingEnemyCount: 5
+  isMixed: 1

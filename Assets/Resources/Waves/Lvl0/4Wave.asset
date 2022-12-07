@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: 4Wave
   m_EditorClassIdentifier: 
   timeBetweenSpawnEnemy: 1.25
-  whatEnemies:
-  - {fileID: 4108050871300838103, guid: 5e85fe4809f940542b1e3622f3e17c35, type: 3}
-  - {fileID: 1537230036243868430, guid: 32f7e55d615202e4ba81e0aea86eb6ea, type: 3}
-  - {fileID: 3675287555131018889, guid: a2b5b0923c673214d83b95d209287770, type: 3}
   normalEnemyCount: 59
   heavyEnemyCount: 15
   flyingEnemyCount: 30
+  isMixed: 0
