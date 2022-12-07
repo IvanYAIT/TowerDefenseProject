@@ -42,37 +42,20 @@ public class Spawner : Object
         progressBar.maxValue -= 1;
     }
 
-    private void SpawnNormalEnemy()
+    private void SpawnEnemy(int indexOfSpawnpoint, int indexOfEnemy)
     {
-        if (spawnpoints[0].childCount == 0)
+        if (spawnpoints[indexOfSpawnpoint].childCount == 0)
         {
-            GameObject obj = Instantiate(enemies[0], spawnpoints[0].position, new Quaternion());
+            GameObject obj = Instantiate(enemies[indexOfEnemy], spawnpoints[indexOfSpawnpoint].position, new Quaternion());
             obj.GetComponent<Enemy>().SetProgressBar(progressBar);
             enemyGeneralCounter++;
             enemyLocalCounter++;
-            normalEnemyCounter++;
-        }
-    }
-    private void SpawnHeavyEnemy()
-    {
-        if (spawnpoints[1].childCount == 0)
-        {
-            GameObject obj = Instantiate(enemies[1], spawnpoints[1].position, new Quaternion());
-            obj.GetComponent<Enemy>().SetProgressBar(progressBar);
-            enemyGeneralCounter++;
-            enemyLocalCounter++;
-            heavyEnemyCounter++;
-        }
-    }
-    private void SpawnFlyingEnemy()
-    {
-        if (spawnpoints[2].childCount == 0)
-        {
-            GameObject obj = Instantiate(enemies[2], spawnpoints[2].position, new Quaternion());
-            obj.GetComponent<Enemy>().SetProgressBar(progressBar);
-            enemyGeneralCounter++;
-            enemyLocalCounter++;
-            flyingEnemyCounter++;
+            if (indexOfEnemy == 0)
+                normalEnemyCounter++;
+            else if (indexOfEnemy == 1)
+                heavyEnemyCounter++;
+            else if (indexOfEnemy == 2)
+                flyingEnemyCounter++;
         }
     }
 
@@ -94,15 +77,25 @@ public class Spawner : Object
                     {
                         if (normalEnemyCounter < currentWave.NormalEnemyCount)
                         {
-                            SpawnNormalEnemy();
+                            if (currentWave.IsMixed)
+                                SpawnEnemy(Random.Range(0, 3), 0);
+                            else
+                                SpawnEnemy(0, 0);
+
                         }
                         if (heavyEnemyCounter < currentWave.HeavyEnemyCount)
                         {
-                            SpawnHeavyEnemy();
+                            if (currentWave.IsMixed)
+                                SpawnEnemy(Random.Range(0, 3), 1);
+                            else
+                                SpawnEnemy(1, 1);
                         }
                         if (flyingEnemyCounter < currentWave.FlyingEnemyCount)
                         {
-                            SpawnFlyingEnemy();
+                            if (currentWave.IsMixed)
+                                SpawnEnemy(Random.Range(0, 3), 2);
+                            else
+                                SpawnEnemy(2, 2);
                         }
                         timer = 0;
                     }

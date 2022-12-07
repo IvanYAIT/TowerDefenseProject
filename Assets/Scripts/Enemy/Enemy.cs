@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private int damageToTower;
     private Slider progressBar;
 
+    public float LifeTime { get; private set; }
     public int CurrentHP { get; private set; }
     public void SetProgressBar(Slider progressBar) => this.progressBar = progressBar;
 
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Update()
     {
+        LifeTime += Time.deltaTime;
         if (CurrentHP <= 0)
         {
             Death();

@@ -28,7 +28,7 @@ namespace Core
         private MainTowerHPView mainTowerHPView;
         private Game game;
 
-        void Start()
+        void Awake()
         {
             ResourceManager.Instance.money = int.Parse(moneyText.text);
             stateMachine = new StateMachine(menu, isLvl0);

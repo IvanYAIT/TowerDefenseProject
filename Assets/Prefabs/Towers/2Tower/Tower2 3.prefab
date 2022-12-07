@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4867675685530348544}
   - component: {fileID: 8934128552751189243}
   m_Layer: 0
-  m_Name: Tower2
+  m_Name: Tower2 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c42392ca1f99f6d498860f4cf3ee9c35, type: 2}
+  - {fileID: 2100000, guid: 2f920b04ebbf2844ea76efc2f027f27d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,19 +111,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 100
-  Culldown: 1
-  Curcooldown: 1
-  Power: 10
-  Radius: 10
+  Culldown: 0.5
+  Curcooldown: 0.5
+  Power: 20
+  Radius: 6
   MoneyForLevelUp: 150
   ShownObject: {fileID: 2709128671525825233, guid: 2fb88b07ac2b5cf4387ef7024ab1a51b, type: 3}
-  LevelUpCulldown:
-  - 0
-  - 0.5
-  LevelupPower: 0a00000000000000
-  LevelUpRadius: 0000000000000000
-  NeededMoneyForLevelUp: 3200000000000000
+  CountOfUpgrades: 2
+  TowerPrefabs:
+  - {fileID: 8801023135544343481, guid: e56b90e54642fb7419a2938b5d706ec8, type: 3}
+  - {fileID: 8801023135544343481}
   Using: 1
+  lvlofTower: 0
   Projectile: {fileID: 6420653978220379580, guid: d5f5eeb7d66094d4f8deadeba330c373, type: 3}
   CabBeatFlingEnemies: 1
   typeThree: 0

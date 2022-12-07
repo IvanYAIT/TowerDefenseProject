@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +36,7 @@ public class Tower : MonoBehaviour
 
     public void LevelUp()
     {
+        ResourceManager.Instance.money -= MoneyForLevelUp;
         SetNewTower();
     }
 
@@ -64,14 +66,14 @@ public class Tower : MonoBehaviour
         }
 
 
-        if (ResourceManager.Instance.money >= MoneyForLevelUp && objUpgrade == null && lvlofTower <= CountOfUpgrades)
+        if (ResourceManager.Instance.money >= MoneyForLevelUp && objUpgrade == null && lvlofTower < CountOfUpgrades)
         {
             objUpgrade = Instantiate(ShownObject, new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), transform.rotation);
             objUpgrade.GetComponent<scheking>().index = IndexManager.SetIndex();
             IndexOfCheckPrefab = objUpgrade.GetComponent<scheking>().index;
 
         }
-        else if ((ResourceManager.Instance.money <= MoneyForLevelUp && objUpgrade == null) || lvlofTower >= CountOfUpgrades)
+        else if ((ResourceManager.Instance.money < MoneyForLevelUp && objUpgrade != null) || lvlofTower >= CountOfUpgrades)
         {
             Destroy(objUpgrade);
         }
@@ -85,7 +87,6 @@ public class Tower : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Upgrade" && hit.transform.GetComponent<scheking>().index == IndexOfCheckPrefab)
                 {
-                    Debug.Log(hit);
                     LevelUp();
                     Destroy(objUpgrade);
                 }
@@ -101,67 +102,62 @@ public class Tower : MonoBehaviour
         return false;
     }
 
+    void CheckTarget(List<GameObject> enemies, string tag, out Transform currentEnemy)
+    {
+        float nearestEnemyDistance = Mathf.Infinity;
+        int enemyIndexWithMaxLifetime=0;
+        float maxlifetime=0;
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag(tag))
+        {
+            float currentDistance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
+            {
+                enemies.Add(enemy);
+            }
+        }
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if(enemies[i].GetComponent<Enemy>().LifeTime > maxlifetime)
+            {
+                maxlifetime = enemies[i].GetComponent<Enemy>().LifeTime;
+                enemyIndexWithMaxLifetime = i;
+            }
+        }
+        if (enemies.Count >= 1)
+            currentEnemy = enemies[enemyIndexWithMaxLifetime].transform;
+        else
+            currentEnemy = null;
+    }
 
     void SearchTarget(bool Can)
     {
         Transform nearestEnemy = null;
         Transform nearestFlyingEnemy = null;
+        Transform[] arr = new Transform[2];
         float nearestEnemyDistance = Mathf.Infinity;
+        List<GameObject> enemiesInRadius = new List<GameObject>();
         if (Can)
         {
-
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("FlyingEnemy"))
-            {
-                float currentDistance = Vector2.Distance(transform.position, enemy.transform.position);
-
-                if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
-                {
-                    nearestEnemy = enemy.transform;
-                    nearestEnemyDistance = currentDistance;
-                }
-            }
+            CheckTarget(enemiesInRadius, "FlyingEnemy", out nearestEnemy);
         }
         else if (typeThree)
         {
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
-                float currentDistance = Vector2.Distance(transform.position, enemy.transform.position);
-
-                if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
-                {
-                    nearestEnemy = enemy.transform;
-                    nearestEnemyDistance = currentDistance;
-                }
-            }
-            Shoot(nearestEnemy);
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("FlyingEnemy"))
-            {
-                float currentDistance = Vector2.Distance(transform.position, enemy.transform.position);
-
-                if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
-                {
-                    nearestFlyingEnemy = enemy.transform;
-                    nearestEnemyDistance = currentDistance;
-                }
-            }
-            Shoot(nearestFlyingEnemy);
+            CheckTarget(enemiesInRadius, "FlyingEnemy", out nearestFlyingEnemy);
+            CheckTarget(enemiesInRadius, "Enemy", out nearestEnemy);
+            arr[0] = nearestEnemy;
+            arr[1] = nearestFlyingEnemy;
+            foreach (Transform enemy in arr)
+                Shoot(enemy);
         }
         else
         {
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
-                float currentDistance = Vector2.Distance(transform.position, enemy.transform.position);
-
-                if (currentDistance < nearestEnemyDistance && currentDistance <= Radius)
-                {
-                    nearestEnemy = enemy.transform;
-                    nearestEnemyDistance = currentDistance;
-                }
-            }
+            CheckTarget(enemiesInRadius, "Enemy", out nearestEnemy);
         }
 
 
-        if (nearestEnemy != null)
+        if (nearestEnemy != null && !typeThree)
             Shoot(nearestEnemy);
     }
 
