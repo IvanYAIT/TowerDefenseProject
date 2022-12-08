@@ -28,7 +28,7 @@ namespace State
 
         public override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.PageDown))
                 owner.ChangeState(typeof(GameState));
 
         }

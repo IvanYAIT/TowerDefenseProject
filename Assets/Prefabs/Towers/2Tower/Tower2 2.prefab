@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1646871208736042354}
   - component: {fileID: 8263966084180385335}
   - component: {fileID: 8934128552751189243}
-  - component: {fileID: -441865207825838366}
+  - component: {fileID: -1480927479846091983}
   m_Layer: 0
   m_Name: Tower2 2
   m_TagString: Untagged
@@ -113,7 +113,7 @@ MonoBehaviour:
   Projectile: {fileID: 6420653978220379580, guid: d5f5eeb7d66094d4f8deadeba330c373, type: 3}
   CabBeatFlingEnemies: 1
   typeThree: 0
---- !u!65 &-441865207825838366
+--- !u!65 &-1480927479846091983
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,5 +124,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029229226, y: 0.02000744, z: 0.026588643}
-  m_Center: {x: 0.00029414982, y: -0.0000019609, z: 0.0032943196}
+  m_Size: {x: 0.02922924, y: 0.020007458, z: 0.026588645}
+  m_Center: {x: 0.00029415, y: -0.0000019628808, z: 0.0032943196}

@@ -22,9 +22,9 @@ namespace State
         {
             if (Input.GetKeyDown(KeyCode.Tab))
                 owner.ChangeState(typeof(PauseMenuState));
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.PageDown))
                 owner.ChangeState(typeof(LoseState));
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.PageUp))
                 owner.ChangeState(typeof(WinState));
         }
     }
