@@ -17,16 +17,15 @@ namespace State
             states.Add(typeof(WinState), new WinState(this, menu));
             states.Add(typeof(LoseState), new LoseState(this, menu));
             states.Add(typeof(TrainingState), new TrainingState(this, menu));
-
+            
             currentState = new GameState(this);
 
             if (isLvl0)
                 ChangeState(typeof(TrainingState));
 
-            Training.OnPlayBtnPress += ChangeState;
-            MainTower.OnTowerDestroy += ChangeToLoseState;
-            SceneLoader.OnSceneChange += ChangeState;
             Game.OnWin += ChangeState;
+            MainTower.OnTowerDestroy += ChangeState;
+            SceneLoader.OnSceneChange += ChangeSceneState;
         }
 
         public void ChangeState(Type type)
@@ -36,17 +35,18 @@ namespace State
             currentState.Enter();
         }
 
-        public void ChangeToLoseState(Type type)
+        public void ChangeSceneState(Type type)
         {
             currentState.Exit();
             states.TryGetValue(type, out currentState);
             currentState.Enter();
-            MainTower.OnTowerDestroy -= ChangeToLoseState;
+            SceneLoader.OnSceneChange -= ChangeSceneState;
         }
 
         public void Update()
         {
             currentState.Update();
+            
         }
     }
 }

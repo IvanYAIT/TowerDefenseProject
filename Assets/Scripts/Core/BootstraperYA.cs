@@ -60,8 +60,8 @@ namespace Core
                 moneyView.View();
                 spawner.Spawn();
                 mainTowerHPView.View(mainTower.HP);
+                timer.Check();
             }
-
         }
     }
 }

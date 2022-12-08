@@ -23,6 +23,7 @@ namespace State
         public override void Exit()
         {
             loseMenu.SetActive(false);
+            MainTower.OnTowerDestroy -= owner.ChangeState;
             Time.timeScale = 1;
         }
 

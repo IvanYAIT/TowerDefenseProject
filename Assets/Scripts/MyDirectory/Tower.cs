@@ -68,7 +68,7 @@ public class Tower : MonoBehaviour
 
         if (ResourceManager.Instance.money >= MoneyForLevelUp && objUpgrade == null && lvlofTower < CountOfUpgrades)
         {
-            objUpgrade = Instantiate(ShownObject, new Vector3(transform.position.x, 8.2f, transform.position.z), ShownObject.transform.rotation);
+            objUpgrade = Instantiate(ShownObject, new Vector3(transform.position.x, 6.2f, transform.position.z), ShownObject.transform.rotation);
             objUpgrade.GetComponent<scheking>().index = IndexManager.SetIndex();
             IndexOfCheckPrefab = objUpgrade.GetComponent<scheking>().index;
 

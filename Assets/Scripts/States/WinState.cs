@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core;
+using UnityEngine;
 
 namespace State
 {
@@ -20,6 +21,7 @@ namespace State
         public override void Exit()
         {
             winMenu.SetActive(false);
+            Game.OnWin -= owner.ChangeState;
             Time.timeScale = 1;
         }
 

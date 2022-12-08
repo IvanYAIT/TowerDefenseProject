@@ -17,6 +17,7 @@ namespace State
         public override void Enter()
         {
             Time.timeScale = 0;
+            Training.OnPlayBtnPress += owner.ChangeState;
             musicPlayer.Stop();
             trainingMenu.SetActive(true);
         }
@@ -24,6 +25,7 @@ namespace State
         public override void Exit()
         {
             Time.timeScale = 1;
+            Training.OnPlayBtnPress -= owner.ChangeState;
             musicPlayer.Play();
             trainingMenu.SetActive(false);
         }

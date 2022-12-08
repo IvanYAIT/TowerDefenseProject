@@ -28,9 +28,12 @@ public class SceneLoader : MonoBehaviour
     public void Continue()=>
         OnSceneChange?.Invoke(typeof(GameState));
 
-    public void MainMenu() =>
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
+    }
 
     public void Quit() =>
-        Application.OpenURL("https://itch.io");
+        Application.OpenURL("https://shgamerk.itch.io/croco-beat");
 }

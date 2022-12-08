@@ -52,8 +52,12 @@ public class Timer : MonoBehaviour
 
     IEnumerator TimeFlow()
     {
+        bool truth = true;
+        Debug.Log("timeflow");
+
         while (true)
         {
+            Debug.Log("while");
             if (sec == 59)
             {
                 min++;
@@ -72,7 +76,7 @@ public class Timer : MonoBehaviour
             color.a += 0.01f;
             music.volume -= volume;
             levelEnd.GetComponent<Image>().color = color;
-            if (color.a == 1)
+            if (music.volume == 0)
                 onTimerEnd?.Invoke();
             yield return new WaitForSeconds(0.1f);
         }

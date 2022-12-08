@@ -61,7 +61,8 @@ public class Spawner : Object
 
     public void Spawn()
     {
-        if(waveDelayTimer >= waveDelay)
+        
+        if (waveDelayTimer >= waveDelay)
         {
             if (first)
             {
