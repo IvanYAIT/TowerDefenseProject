@@ -39,7 +39,8 @@ public class DragObjects : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                 Tower towerInfo = TowerPrefab.GetComponent<Tower>();
                 if (ResourceManager.Instance.money >= towerInfo.Cost)
                 {
-                    Instantiate(TowerPrefab, new Vector3(hit.transform.position.x - 1.1f, hit.transform.position.y + 1.5f, hit.transform.position.z - 1.1f), new Quaternion(1, 0, 0, -45)).GetComponent<Tower>().SetTextMoney(Text);
+                    GameObject obj = Instantiate(TowerPrefab, new Vector3(hit.transform.position.x, hit.transform.position.y + 1.5f, hit.transform.position.z), hit.transform.rotation);
+                    obj.GetComponent<Tower>().SetTextMoney(Text);
                     ResourceManager.Instance.money -= towerInfo.Cost;
                 }
 

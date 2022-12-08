@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3318780644692505286}
   - component: {fileID: 328409996903802629}
   - component: {fileID: 3251028618340380330}
-  - component: {fileID: 5748917329471605865}
   - component: {fileID: 6965748052830914483}
+  - component: {fileID: 5506620787681946687}
   m_Layer: 0
   m_Name: Tower3 3
   m_TagString: Untagged
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2531070586388885301}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.46, y: -460.1, z: -321.67365}
-  m_LocalScale: {x: 1, y: 2.4582, z: 1}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 85, y: 85, z: 143.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!33 &328409996903802629
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2531070586388885301}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -3749233319863682582, guid: 6bd5f9795d06aa647afad6c5dd90000e, type: 3}
 --- !u!23 &3251028618340380330
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85624f5bf641d6e4ead04af14560abdb, type: 2}
+  - {fileID: 4874126678125670354, guid: 6bd5f9795d06aa647afad6c5dd90000e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5748917329471605865
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531070586388885301}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6965748052830914483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +103,7 @@ MonoBehaviour:
   Power: 50
   Radius: 5
   MoneyForLevelUp: 250
-  ShownObject: {fileID: 2709128671525825233, guid: 2fb88b07ac2b5cf4387ef7024ab1a51b, type: 3}
+  ShownObject: {fileID: 4531533889824403607, guid: 197e8b3127314b748ab4d1a52e60f6c4, type: 3}
   CountOfUpgrades: 2
   TowerPrefabs:
   - {fileID: 2531070586388885301, guid: 9b3541024769fd2428f1c224678dfbab, type: 3}
@@ -126,3 +113,16 @@ MonoBehaviour:
   Projectile: {fileID: 6420653978220379580, guid: d5f5eeb7d66094d4f8deadeba330c373, type: 3}
   CabBeatFlingEnemies: 0
   typeThree: 1
+--- !u!65 &5506620787681946687
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2531070586388885301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.029009053, y: 0.02, z: 0.029414544}
+  m_Center: {x: -0.0009827167, y: 0, z: 0.004707272}
